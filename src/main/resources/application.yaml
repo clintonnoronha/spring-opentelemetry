@@ -1,0 +1,31 @@
+spring:
+  application:
+    name: spring-opentelemetry
+
+management:
+  tracing:
+    sampling:
+      # 100% sampling for demonstration purposes
+      # 0.1 is more typical in production
+      probability: 1.0
+  otlp:
+    metrics:
+      exporter:
+        url: http://localhost:4318/v1/metrics
+  opentelemetry:
+    tracing:
+      exporter:
+        otlp:
+          endpoint: http://localhost:4318/v1/traces
+    logging:
+      exporter:
+        otlp:
+          endpoint: http://localhost:4318/v1/logs
+
+server:
+  shutdown: immediate
+logging:
+  level:
+    com.example.otel: INFO
+    org.springframework.boot.actuator.autoconfigure.opentelemetry: DEBUG
+    org.springframework.boot.docker.compose: DEBUG
