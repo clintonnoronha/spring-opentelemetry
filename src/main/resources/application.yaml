@@ -3,6 +3,10 @@ spring:
     name: spring-opentelemetry
 
 management:
+  observations:
+    annotations:
+      # Enable OpenTelemetry observation
+      enabled: true
   tracing:
     sampling:
       # 100% sampling for demonstration purposes
